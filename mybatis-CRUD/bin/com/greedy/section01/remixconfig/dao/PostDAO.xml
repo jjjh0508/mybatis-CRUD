@@ -4,46 +4,69 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- 마이바티스 홈페이지 - 시작하기 - 매핑된 sql구문 살펴보기 -->
   
   <mapper namespace = "com.greedy.section01.remixconfig.dao.PostDAO">
-  
+  <!-- 가서 다시확인 -->
   <resultMap id="postResultMap" type="com.greedy.section01.remixconfig.DTO.PostDTO">
-  <id property="postNo" column="POST_NO"/> <!-- 프라이머리키는 처음에 작성해주고 나머지는 아래와 같이 작성 -->
- 	 <result property="fileNo" column="FILE_NO"/>
-  	<result property="fileTitle" column="FILE_TITLE"/>
-  	<result property="fileContent" column="FILE_CONTENT"/>
-  	<result property="fileTime" column="FILE_TIME"/>
-  	<result property="fileState" column="FILE_STATE"/>
-  	<result property="cateNo" column="CATE_NO"/>
-  	<result property="blogNo" column="BLOG_NO"/>
+  <id property="posNum" column="POS_NUM"/> <!-- 프라이머리키는 처음에 작성해주고 나머지는 아래와 같이 작성 -->
+ 	 <result property="blogNum" column="BLOG_NUM"/>
+  	<result property="blogName" column="BLOG_NAME"/>
+  	<result property="title" column="P_TITLE"/>
+  	<result property="contents" column="P_CONTENTS"/>
+  	<result property="status" column="P_STATUS"/>
+  	<result property="cateNum" column="CATE_NUM"/>
+  	<result property="cateDate" column="CRTEA_TIME"/>
   </resultMap>
   
   <select id="selectAllPost" resultMap="postResultMap"> <!-- 쿼리 작성 -->
-  SELECT
-       *
-    FROM POST
-   WHERE FILE_STATE = '활성화'
+ 	SELECT
+ 	   	   B.BLOG_NAME ,
+ 	   	   P._TITLE ,
+ 	   	   P.CONTENTS ,
+ 	   	   CRTEA_TIME
+ 	  FROM BLOG B
+ 	  JOIN POSTIONG P ON (B.BLOG_NUM = P.BLOG_NUM)
+ 	  WHRER P_STATUS != 'N'
   </select>
   
    <select id="selectPost" resultMap="postResultMap">
    SELECT
-       *
+           B.BLOG_NAME ,
+ 	   	   P._TITLE ,
+ 	   	   P.CONTENTS ,
+ 	   	   P_STATUS ,
+ 	   	   CRTEA_TIME
   FROM POST
- WHERE POST_NO = #{ code } and FILE_STATE = '활성화'
+  JOIN POSTIONG P ON (B.BLOG_NUM = P.BLOG_NUM)
+  WHERE POST_NO = #{ code }
    
    </select>
    
    <update id="modifyPost" parameterType="com.greedy.section01.remixconfig.DTO.ModifyPostDTO">
-   UPDATE POST SET FILE_CONTENT = #{ fileContent }
- 	WHERE POST_NO = #{ postNo }
+   UPDATE POSTIONG P
+   SET 	P_TITLE  = #{ title },
+   		P_CONTENTS =#{ contents }
+   		WHERE POS_NUM = #{ posNum }
+   
    </update>
    
    <update id="deletePost">
-   UPDATE POST SET FILE_STATE = '비활성화'
- WHERE POST_NO = #{ code }
+   UPDATE POSTIONG P SET P_STATUS = 'N'
+ WHERE POS_NUM = #{ code }
    
    </update>
    
    
-  
+  <insert id="insertPost">
+  INSERT INTO POSTIONG(POS_NUM, P_TITLE, P_CONTENTS,BLOG_NUM,CATE_NUM,CRTEA_TIME,P_STATUS)
+    VALUES(
+    SEQ_POSNUM.NEXTVAL,
+    		#{title},
+    		#{contents},
+    		#{blogNum},
+    		#{cateNum},
+    		SYSDATE,
+    		DEFAULT
+    		)
+  </insert>
   
   
   </mapper>

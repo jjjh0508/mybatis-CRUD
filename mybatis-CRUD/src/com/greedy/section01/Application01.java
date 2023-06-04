@@ -17,9 +17,10 @@ public class Application01 {
 			System.out.println("블로그 관리");
 			System.out.println("1. 전체 글 조회하기");
 			System.out.println("2. 단일 글 조회하기");
-			System.out.println("3. 글 수정하기");
-			System.out.println("4. 글 삭제하기(비활성화)");
-			System.out.println("5. 종료");
+			System.out.println("3. 글 작성");
+			System.out.println("4. 글 수정하기");
+			System.out.println("5. 글 삭제하기(비활성화)");
+			System.out.println("6. 종료");
 			System.out.println("번호를 입력해 주세요");
 			int no = sc.nextInt();
 
@@ -31,15 +32,16 @@ public class Application01 {
 			case 2:
 				postController.findPost(inputPostNo()); // inputPostNo 메소드 있음
 				break;
-
 			case 3:
+				postController.insertPost(insertPostContent());
+			case 4:
 				postController.modifyPost(ModifyPostContent());
 				break;
 				
-			case 4:
+			case 5:
 				postController.deletePost(DeletePostState());
 				break;
-			case 5:
+			case 6:
 				sta = false;
 				System.out.println("종료되었습니다.");
 				break;
@@ -64,12 +66,35 @@ public class Application01 {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("글 번호를 입력해주세요");
 		String code = sc.nextLine();
+		System.out.println("수정할 글 제목를 입력해주세요");
+		String title = sc.nextLine();
 		System.out.println("수정할 내용을 적어주세요");
 		String content = sc.nextLine();
 		
 		
 		Map<String, String> parameter = new HashMap<String, String>();
 		parameter.put("code", code);
+		parameter.put("title",title );
+		parameter.put("content", content);
+		return parameter;
+
+	}
+	private static Map<String, String> insertPostContent() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("블로그 번호 를 입력해주세요");
+		String bCode = sc.nextLine();
+		System.out.println("카테고리 번호");
+		String cCode = sc.nextLine();
+		System.out.println("작성할 글 제목를 입력해주세요");
+		String title = sc.nextLine();
+		System.out.println("작성할 내용을 적어주세요");
+		String content = sc.nextLine();
+		
+		
+		Map<String, String> parameter = new HashMap<String, String>();
+		parameter.put("bCode", bCode);
+		parameter.put("cCode", cCode);
+		parameter.put("title",title );
 		parameter.put("content", content);
 		return parameter;
 

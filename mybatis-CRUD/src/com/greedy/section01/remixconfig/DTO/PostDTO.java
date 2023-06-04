@@ -4,84 +4,93 @@ import java.sql.Date;
 
 public class PostDTO {
 	
-	private String postNo;
-	private String fileNo;
-	private String fileTitle;
-	private String fileContent;
-	private Date fileTime;
-	private String fileState;
-	private String cateNo;
-	private String blogNo;
+	private int posNum;
+	private int blogNum;
+	private String blogName;
+	private int cateNum;
+	private String cateName;
+	private int fileNum;
+	private String title;
+	private String contents;
+	private Date cateDate;
+	private String status;
 	public PostDTO() {
 		
 	}
-	public PostDTO(String postNo, String fileNo, String fileTitle, String fileContent, Date fileTime, String fileState,
-			String cateNo, String blogNo) {
+	public PostDTO(int posNum, int blogNum, String blogName, int cateNum, String cateName, int fileNum, String title,
+			String contents, Date cateDate, String status) {
 		super();
-		this.postNo = postNo;
-		this.fileNo = fileNo;
-		this.fileTitle = fileTitle;
-		this.fileContent = fileContent;
-		this.fileTime = fileTime;
-		this.fileState = fileState;
-		this.cateNo = cateNo;
-		this.blogNo = blogNo;
+		this.posNum = posNum;
+		this.blogNum = blogNum;
+		this.blogName = blogName;
+		this.cateNum = cateNum;
+		this.cateName = cateName;
+		this.fileNum = fileNum;
+		this.title = title;
+		this.contents = contents;
+		this.cateDate = cateDate;
+		this.status = status;
 	}
-	public String getPostNo() {
-		return postNo;
+	public int getPosNum() {
+		return posNum;
 	}
-	public void setPostNo(String postNo) {
-		this.postNo = postNo;
+	public void setPosNum(int posNum) {
+		this.posNum = posNum;
 	}
-	public String getFileNo() {
-		return fileNo;
+	public int getBlogNum() {
+		return blogNum;
 	}
-	public void setFileNo(String fileNo) {
-		this.fileNo = fileNo;
+	public void setBlogNum(int blogNum) {
+		this.blogNum = blogNum;
 	}
-	public String getFileTitle() {
-		return fileTitle;
+	public String getBlogName() {
+		return blogName;
 	}
-	public void setFileTitle(String fileTitle) {
-		this.fileTitle = fileTitle;
+	public void setBlogName(String blogName) {
+		this.blogName = blogName;
 	}
-	public String getFileContent() {
-		return fileContent;
+	public int getCateNum() {
+		return cateNum;
 	}
-	public void setFileContent(String fileContent) {
-		this.fileContent = fileContent;
+	public void setCateNum(int cateNum) {
+		this.cateNum = cateNum;
 	}
-	public Date getFileTime() {
-		return fileTime;
+	public String getCateName() {
+		return cateName;
 	}
-	public void setFileTime(Date fileTime) {
-		this.fileTime = fileTime;
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
 	}
-	public String getFileState() {
-		return fileState;
+	public int getFileNum() {
+		return fileNum;
 	}
-	public void setFileState(String fileState) {
-		this.fileState = fileState;
+	public void setFileNum(int fileNum) {
+		this.fileNum = fileNum;
 	}
-	public String getCateNo() {
-		return cateNo;
+	public String getTitle() {
+		return title;
 	}
-	public void setCateNo(String cateNo) {
-		this.cateNo = cateNo;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getBlogNo() {
-		return blogNo;
+	public String getContents() {
+		return contents;
 	}
-	public void setBlogNo(String blogNo) {
-		this.blogNo = blogNo;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
-	@Override
-	public String toString() {
-		return "PostDTO [postNo=" + postNo + ", fileNo=" + fileNo + ", fileTitle=" + fileTitle + ", fileContent="
-				+ fileContent + ", fileTime=" + fileTime + ", fileState=" + fileState + ", cateNo=" + cateNo
-				+ ", blogNo=" + blogNo + "]";
+	public Date getCateDate() {
+		return cateDate;
 	}
-	
+	public void setCateDate(Date cateDate) {
+		this.cateDate = cateDate;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 	// 기본생성자 , 매개변수 있는 생성자// 게터 세터// toString 생성
 	

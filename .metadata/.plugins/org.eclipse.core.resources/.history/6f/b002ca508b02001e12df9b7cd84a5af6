@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- 마이바티스 홈페이지 - 시작하기 - 매핑된 sql구문 살펴보기 -->
+  
+  <mapper namespace = "com.greedy.section01.remixconfig.dao.PostDAO">
+  
+  <resultMap id="postResultMap" type="com.greedy.section01.remixconfig.DTO.PostDTO">
+  <id property="posNum" column="POS_NUM"/> <!-- 프라이머리키는 처음에 작성해주고 나머지는 아래와 같이 작성 -->
+ 	 <result property="blogNum" column="BLOG_NUM"/>
+  	<result property="blogName" column="BLOG_NAME"/>
+  	<result property="title" column="P_TITLE"/>
+  	<result property="contents" column="P_CONTENTS"/>
+  	<result property="status" column="P_STATUS"/>
+  	<result property="cateNum" column="CATE_NUM"/>
+  	<result property="cateDate" column="CRTEA_TIME"/>
+  </resultMap>
+  
+  <select id="selectAllPost" resultMap="postResultMap"> <!-- 쿼리 작성 -->
+ 	SELECT
+ 	   	   B.BLOG_NAME ,
+ 	   	   P._TITLE ,
+ 	   	   P.CONTENTS ,
+ 	   	   CRTEA_TIME
+ 	  FROM BLOG B
+ 	  JOIN POSTIONG P ON (B.BLOG_NUM = P.BLOG_NUM)
+ 	  WHRER P_STATUS != 'N'
+  </select>
+  
+   <select id="selectPost" resultMap="postResultMap">
+   SELECT
+           B.BLOG_NAME ,
+ 	   	   P._TITLE ,
+ 	   	   P.CONTENTS ,
+ 	   	   P_STATUS ,
+ 	   	   CRTEA_TIME
+  FROM POST
+  JOIN POSTIONG P ON (B.BLOG_NUM = P.BLOG_NUM)
+  WHERE POST_NO = #{ code }
+   
+   </select>
+   
+   <update id="modifyPost" parameterType="com.greedy.section01.remixconfig.DTO.ModifyPostDTO">
+   UPDATE POST SET FILE_CONTENT = #{ fileContent }
+ 	WHERE POST_NO = #{ postNo }
+   </update>
+   
+   <update id="deletePost">
+   UPDATE POST SET FILE_STATE = '비활성화'
+ WHERE POST_NO = #{ code }
+   
+   </update>
+   
+   
+  
+  
+  
+  </mapper>
+  
+  
+ 

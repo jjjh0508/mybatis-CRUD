@@ -1,33 +1,34 @@
 package com.greedy.section01.remixconfig.DTO;
 
 public class ModifyPostDTO {
-	
-	private String postNo;
-	private String fileContent;
+	private int posNum;
+	private String title;
+	private String contents;
 	public ModifyPostDTO() {
-		
-		
 	}
-	public ModifyPostDTO(String postNo, String fileContent) {
+	public ModifyPostDTO(int posNum, String title, String contents) {
 		super();
-		this.postNo = postNo;
-		this.fileContent = fileContent;
+		this.posNum = posNum;
+		this.title = title;
+		this.contents = contents;
 	}
-	public String getPostNo() {
-		return postNo;
+	public int getPosNum() {
+		return posNum;
 	}
-	public void setPostNo(String postNo) {
-		this.postNo = postNo;
+	public void setPosNum(int posNum) {
+		this.posNum = posNum;
 	}
-	public String getFileContent() {
-		return fileContent;
+	public String getTitle() {
+		return title;
 	}
-	public void setFileContent(String fileContent) {
-		this.fileContent = fileContent;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	@Override
-	public String toString() {
-		return "ModifyPostDTO [postNo=" + postNo + ", fileContent=" + fileContent + "]";
+	public String getContents() {
+		return contents;
+	}
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 	
 	

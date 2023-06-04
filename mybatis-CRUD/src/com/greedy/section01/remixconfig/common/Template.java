@@ -18,8 +18,8 @@ public class Template {
 	private static SqlSessionFactory sessionFactory; // 세션 팩토리 선언 계속사용하려고 밖에 선언
 	private static final String DRIVER ="oracle.jdbc.driver.OracleDriver"; // 드라이버선언
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String USER = "TEST"; //
-	private static final String PASSWORD = "TEST";// 사용하려는 패스워드
+	private static final String USER = "C##BLOG"; //
+	private static final String PASSWORD = "BLOG";// 사용하려는 패스워드
 	
 	//자바 config 사용방식
 	public static SqlSession getSesstion() { //메소드 생성

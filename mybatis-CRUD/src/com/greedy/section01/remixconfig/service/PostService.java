@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import static com.greedy.section01.remixconfig.common.Template.getSesstion;
 
+import com.greedy.section01.remixconfig.DTO.InsertDTO;
 import com.greedy.section01.remixconfig.DTO.ModifyPostDTO;
 import com.greedy.section01.remixconfig.DTO.PostDTO;
 import com.greedy.section01.remixconfig.dao.PostDAO;
@@ -21,7 +22,7 @@ public class PostService {
 		return postList; // 리턴 값 null을 변경 post List
 	}
 
-	public PostDTO findPost(String code) {
+	public PostDTO findPost(int code) {
 		SqlSession sqlSession = getSesstion(); // 세션 열어주기
 		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
 		PostDTO post = postDAO.selectPost(code);
@@ -44,10 +45,25 @@ public class PostService {
 		return result;
 	}
 
-	public int deletePost(String code) {
+	public int deletePost(int code) {
 		SqlSession sqlSession = getSesstion(); // 세션 열어주기
 		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
 		int result = postDAO.deletePost(code);
+
+		if (result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+
+		return result;
+	}
+
+	public int insertPost(InsertDTO postDTO) {
+		SqlSession sqlSession = getSesstion(); // 세션 열어주기
+		PostDAO postDAO = sqlSession.getMapper(PostDAO.class);
+		int result = postDAO.insertPost(postDTO);
 
 		if (result > 0) {
 			sqlSession.commit();

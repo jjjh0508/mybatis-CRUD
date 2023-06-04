@@ -3,10 +3,13 @@ package com.greedy.section01.remixconfig.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.greedy.section01.remixconfig.DTO.InsertDTO;
 import com.greedy.section01.remixconfig.DTO.ModifyPostDTO;
 import com.greedy.section01.remixconfig.DTO.PostDTO;
 import com.greedy.section01.remixconfig.common.PrintResult;
 import com.greedy.section01.remixconfig.service.PostService;
+
+import oracle.net.aso.p;
 
 public class PostController {
 	
@@ -37,7 +40,7 @@ public class PostController {
 
 	public void findPost(Map<String, String> inputPostNo) {
 		
-		String code = inputPostNo.get("code");
+		int code = Integer.parseInt(inputPostNo.get("code"));
 		
 		PostDTO post = postService.findPost(code);
 		
@@ -55,8 +58,9 @@ public class PostController {
 		
 		ModifyPostDTO postDTO = new ModifyPostDTO();
 		
-		postDTO.setPostNo(modifyPostContent.get("code"));
-		postDTO.setFileContent(modifyPostContent.get("content"));
+		postDTO.setPosNum(Integer.parseInt(modifyPostContent.get("code")));
+		postDTO.setTitle(modifyPostContent.get("title"));
+		postDTO.setContents(modifyPostContent.get("content"));
 		
 		int result = postService.modifyPost(postDTO); //update는 인트형으로 서비스에 있는 modify호출
 		
@@ -71,7 +75,7 @@ public class PostController {
 
 	public void deletePost(Map<String, String> deletePostState) {
 		
-		String code = deletePostState.get("code");
+		int code = Integer.parseInt(deletePostState.get("code"));
 		
 		int result = postService.deletePost(code);
 		
@@ -80,6 +84,25 @@ public class PostController {
 		}else {
 			printResult.printErrorMessage("notDelete");
 		}
+	}
+
+
+
+	public void insertPost(Map<String, String> insertPostContent) {
+		
+		InsertDTO postDTO = new InsertDTO();
+		
+		postDTO.setBlogNum(Integer.parseInt(insertPostContent.get("bCode")));
+		postDTO.setCateNum(Integer.parseInt(insertPostContent.get("cCode")));
+		postDTO.setTitle(insertPostContent.get("title"));
+		postDTO.setContents(insertPostContent.get("content"));
+		int result = postService.insertPost(postDTO);
+		if (result > 0) {
+			printResult.printSuccessMessage("insert");
+		}else {
+			printResult.printErrorMessage("notinsert");
+		}
+		
 	}
 	
 	

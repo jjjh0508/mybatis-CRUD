@@ -14,8 +14,15 @@ public class PrintResult {
 	}
 
 	public void printPostList(PostDTO post) {
-
-		System.out.println(post);
+		if(post.getContents().equals("N")) {
+			System.out.println("삭제된 게시글 입니다.");
+		}else {
+			System.out.println("블로그 이름 : "+post.getBlogName());
+			System.out.println("블로그 번호 : "+post.getBlogNum());
+			System.out.println("글제목 :"+post.getTitle());
+			System.out.println("글 내용:"+post.getContents());
+		}
+		
 	}
 
 	public void printErrorMessage(String string) {
@@ -27,6 +34,8 @@ public class PrintResult {
 			System.out.println("수정에 실패 했습니다.");
 		}else if (string.equals("notDelete")) {
 			System.out.println("삭제를 실패하였습니다.");
+		}else if(string.equals("notinsert")) {
+			System.out.println("등록 실패");
 		}
 
 	}
@@ -36,6 +45,8 @@ public class PrintResult {
 			System.out.println("수정에 성공하였습니다.");
 		} else if (string.equals("deletePost")) {
 			System.out.println("삭제를 성공했습니다.");
+		}else if(string.equals("insert")) {
+			System.out.println("등록성공");
 		}
 	}
 }
