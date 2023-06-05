@@ -19,24 +19,25 @@
   <select id="selectAllPost" resultMap="postResultMap"> <!-- 쿼리 작성 -->
  	SELECT
  	   	   B.BLOG_NAME ,
- 	   	   P._TITLE ,
- 	   	   P.CONTENTS ,
- 	   	   CRTEA_TIME
- 	  FROM BLOG B
- 	  JOIN POSTIONG P ON (B.BLOG_NUM = P.BLOG_NUM)
- 	  WHRER P_STATUS != 'N'
+ 	   	   P.P_TITLE ,
+ 	   	   P.P_CONTENTS ,
+ 	   	   P.CRTEA_TIME
+ 	  FROM POSTIONG P
+ 	  JOIN BLOG B ON (B.BLOG_NUM = P.BLOG_NUM)
+ 	  WHERE P_STATUS != 'N'
+ 	  
   </select>
   
    <select id="selectPost" resultMap="postResultMap">
    SELECT
            B.BLOG_NAME ,
- 	   	   P._TITLE ,
- 	   	   P.CONTENTS ,
- 	   	   P_STATUS ,
+ 	   	   P.P_TITLE ,
+ 	   	   P.P_CONTENTS ,
+ 	   	   P.P_STATUS ,
  	   	   CRTEA_TIME
-  FROM POST
-  JOIN POSTIONG P ON (B.BLOG_NUM = P.BLOG_NUM)
-  WHERE POST_NO = #{ code }
+  FROM POSTIONG P
+  JOIN BLOG B ON (B.BLOG_NUM = P.BLOG_NUM)
+  WHERE P.POS_NUM = #{ code }
    
    </select>
    
@@ -49,7 +50,7 @@
    </update>
    
    <update id="deletePost">
-   UPDATE POSTIONG P SET P_STATUS = 'N'
+   UPDATE POSTIONG  SET P_STATUS = 'N'
  WHERE POS_NUM = #{ code }
    
    </update>

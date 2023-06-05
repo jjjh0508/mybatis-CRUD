@@ -91,12 +91,6 @@ public class PostDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	@Override
-	public String toString() {
-		return "PostDTO [posNum=" + posNum + ", blogNum=" + blogNum + ", blogName=" + blogName + ", cateNum=" + cateNum
-				+ ", cateName=" + cateName + ", fileNum=" + fileNum + ", title=" + title + ", contents=" + contents
-				+ ", cateDate=" + cateDate + ", status=" + status + "]";
-	}
 	
 	// 기본생성자 , 매개변수 있는 생성자// 게터 세터// toString 생성
 	

@@ -24,7 +24,7 @@
  	   	   P.CRTEA_TIME
  	  FROM POSTIONG P
  	  JOIN BLOG B ON (B.BLOG_NUM = P.BLOG_NUM)
- 	  WHERE P_STATUS != 'N'
+ 	  WHRER P_STATUS != 'N'
  	  
   </select>
   
@@ -50,7 +50,7 @@
    </update>
    
    <update id="deletePost">
-   UPDATE POSTIONG  SET P_STATUS = 'N'
+   UPDATE POSTIONG P SET P_STATUS = 'N'
  WHERE POS_NUM = #{ code }
    
    </update>

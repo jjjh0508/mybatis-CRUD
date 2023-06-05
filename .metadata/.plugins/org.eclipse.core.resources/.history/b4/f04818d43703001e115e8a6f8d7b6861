@@ -24,7 +24,7 @@
  	   	   P.CRTEA_TIME
  	  FROM POSTIONG P
  	  JOIN BLOG B ON (B.BLOG_NUM = P.BLOG_NUM)
- 	  WHERE P_STATUS != 'N'
+ 	  WHRER P_STATUS != 'N'
  	  
   </select>
   
